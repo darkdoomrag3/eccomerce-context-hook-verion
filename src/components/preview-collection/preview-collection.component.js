@@ -1,7 +1,7 @@
 import React from 'react'
 import './preview-collection.style.scss';
 import CollectionItem from '../collection-item/collection-item.compoenet';
-
+import CollectionContext from '../../context/collection/collection.context';
 
 const Preview = ({ title, items }) => {
     return (

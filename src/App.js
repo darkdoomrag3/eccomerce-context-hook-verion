@@ -7,23 +7,12 @@ import ShopPage from './pages/shop/shop.component';
 import Header from './components/header/header.component';
 import SigninAndSignUp from './pages/sign-in-and-sign-up/sign-in-and-sign-up';
 import { auth, createUserProfileDocument } from './firebase/firebase';
-import { connect } from 'react-redux';
-import { setCurrentUser } from './redux/user/user.action'
+
 import CheckoutPage from './pages/checkout/checkout.component';
 
 
-class App extends React.Component {
+const  App =({currentUser})=>{
 
-  componentDidMount() {
-
-    auth.onAuthStateChanged(async user => {
-      createUserProfileDocument(user);
-    })
-
-
-  }
-
-  render() {
 
     return (
       <>
@@ -36,7 +25,7 @@ class App extends React.Component {
           <Route exact path='/chekout' component={CheckoutPage} />
           <Route exact path='/signin' 
           
-          render={() => this.props.currentUser ? (<Redirect to='/' />) : (<SigninAndSignUp />)} />
+          render={() => currentUser ? (<Redirect to='/' />) : (<SigninAndSignUp />)} />
      
      
         </Switch>
@@ -49,27 +38,13 @@ class App extends React.Component {
 
   }
 
-}
-
-
-const mapStateToProps = ({ user }) => ({
-
-  currentUser: user.currentUser
-
-})
-
-const mapDispatchToProps = dispatch => ({
-
-  setCurrentUser: user => dispatch(setCurrentUser(user))
-
-})
 
 
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+
+
+
+export default App;
 
 
 

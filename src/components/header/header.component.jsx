@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 
 import './header.style.scss';
 import { connect } from 'react-redux';
@@ -9,8 +9,14 @@ import CardDropDown from '../card-dropdown/card-dropdown.component';
 import { selectCartHidden } from '../../redux/cart/cart.selector';
 import { selectCurrentUser } from '../../redux/user/user.selector';
 import { OptionContainerStyles, OptionLink, LogoContainer, OptionsContainer, HeaderContainer } from './header.style'
+import CartContext from '../../context/cart/cart.context';
 
-const Header = ({ currentUser, hidden }) => {
+
+const Header = () => {
+
+    const [hidden, setHidden] = useState(true);
+    const toggleHidden = () => setHidden(!hidden);
+
     return (
 
         <HeaderContainer>
@@ -34,7 +40,16 @@ const Header = ({ currentUser, hidden }) => {
                 <OptionLink to='/singout'> Sign Out </OptionLink>
                 <OptionLink to='/signin'>Sing In</OptionLink>
 
-                <CardIcon />
+
+                <CartContext.Provider value={{
+                    hidden,
+                    toggleHidden
+                }}
+                >
+
+                    <CardIcon />
+                </CartContext.Provider>
+
 
             </OptionsContainer>
 
@@ -52,9 +67,6 @@ const Header = ({ currentUser, hidden }) => {
     )
 }
 
-const mapStateToProps = createStructuredSelector({
-    currentUser: selectCurrentUser,
-    hidden: selectCartHidden
-});
 
-export default connect(mapStateToProps)(Header);
+
+export default Header;
