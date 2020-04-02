@@ -8,10 +8,14 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { store, persistor } from './redux/sotre';
 import { PersistGate } from 'redux-persist/integration/react'
+import CartProvider from './provider/cart/cart.provider';
+
 
 
 ReactDOM.render(
-    <Provider store={store}>
+   
+   <CartProvider>
+   <Provider store={store}>
         <BrowserRouter>
 
             <PersistGate persistor={persistor}>
@@ -21,6 +25,6 @@ ReactDOM.render(
 
         </BrowserRouter>
     </Provider>
-
+</CartProvider>
 
     , document.getElementById('root'));
