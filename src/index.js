@@ -13,18 +13,18 @@ import CartProvider from './provider/cart/cart.provider';
 
 
 ReactDOM.render(
-   
-   <CartProvider>
-   <Provider store={store}>
-        <BrowserRouter>
 
-            <PersistGate persistor={persistor}>
-                <App />
+    <CartProvider>
+        <Provider store={store}>
+            <BrowserRouter>
 
-            </PersistGate>
+                <PersistGate persistor={persistor}>
+                    <App />
 
-        </BrowserRouter>
-    </Provider>
-</CartProvider>
+                </PersistGate>
+
+            </BrowserRouter>
+        </Provider>
+    </CartProvider>
 
     , document.getElementById('root'));

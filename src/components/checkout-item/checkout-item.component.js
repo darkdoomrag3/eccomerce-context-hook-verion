@@ -37,9 +37,6 @@ const CheckoutItem = ({ cartItem }) => {
     )
 }
 
-const mapDispatchToProps = dispatch => ({
-    clearItem: item => dispatch(ClearItemFromCart(item)),
- 
-})
 
-export default connect(null, mapDispatchToProps)(CheckoutItem);
+
+export default CheckoutItem;
